@@ -1,0 +1,47 @@
+class Solution {
+    static boolean isValid(String s) {
+        if(s.length() % 2 != 0)
+            return false;
+        
+        //create stack
+        Stack<Character> stack = new Stack();
+        for(char c : s.toCharArray())
+        {
+            if(c=='(' || c=='{' || c=='[')
+            {
+                stack.push(c);
+            }
+            else if(c== ')')
+            {
+                if(!stack.isEmpty() && stack.peek()=='(')
+                    stack.pop();
+                else 
+                    return false;
+            }
+            else if(c== '}')
+            {
+                if(!stack.isEmpty() && stack.peek()== '{')
+                    stack.pop();
+                else 
+                    return false;
+            }
+            else if(c== ']' )
+            {
+                if(!stack.isEmpty() && stack.peek()=='[')
+                    stack.pop();
+                else 
+                    return false;
+            }
+        }
+        
+        return stack.isEmpty();
+        
+    }
+    
+    public static void main(String[] Args)
+    {
+      Scanner sc = new Scanner(System.in);
+      String s = nextLine();
+      isValid(String s);
+    }
+}
