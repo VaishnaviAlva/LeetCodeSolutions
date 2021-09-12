@@ -1,0 +1,38 @@
+Approach 1: Hash Map
+
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        HashMap<Integer,Integer> frequency = new HashMap();
+        
+        for(int i=0;i<nums.length;i++)
+        {
+            if(!frequency.containsKey(nums[i]))
+                frequency.put(nums[i],1);
+            else
+                frequency.put(nums[i],frequency.get(nums[i])+1);
+        }
+        
+        for(Map.Entry<Integer,Integer> entry : frequency.entrySet())
+        {
+            int key = entry.getKey();
+            int val =entry.getValue();
+            if(val >= 2)
+                return true;
+        }
+        return false;
+    }
+}
+
+Approach 2: Sorting and then finding
+
+class Solution {
+    public boolean containsDuplicate(int[] nums) {
+        Arrays.sort(nums);
+        for(int i=0;i<nums.length-1;i++)
+        {
+            if(nums[i] == nums[i+1])
+                return true;
+        }
+        return false;
+}
+}
